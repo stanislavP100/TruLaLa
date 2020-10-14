@@ -34,7 +34,7 @@ public class ControllerImage {
         //   final InputStream in = getClass().getResourceAsStream("/static/persik.jpeg");
         //   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         /////// http://localhost:8080/get-image?im=bol.jpeg
-        System.out.println(Base64.encodeBase64URLSafeString( Files.readAllBytes(Paths.get(str +"/" + image))));
+      //  System.out.println(Base64.encodeBase64URLSafeString( Files.readAllBytes(Paths.get(str +"/" + image))));
         return  Files.readAllBytes(Paths.get(str +"/" + image));//!!! Rabotae!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //   System.out.println(in);
