@@ -28,7 +28,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         File f=new File("Tmp");
         f.mkdir();
 
-       this.uploadDirectory2=f.getAbsolutePath();//.replace("TruLaLa/Tmp","ImagesPrikhod");
+       this.uploadDirectory2=f.getAbsolutePath();  //.replace("TruLaLa/Tmp","ImagesPrikhod");
 
     }
 

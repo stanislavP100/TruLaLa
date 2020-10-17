@@ -11,7 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,7 +49,7 @@ public class ControllerPost {
     public String methodPost(@RequestParam(defaultValue = "no name") String name,
                              @RequestParam(value = "price", defaultValue = "0.00f") Float price,
                              @RequestParam(value = "category", defaultValue = "goods") String category,
-                             @RequestParam MultipartFile file,Model model){
+                             @RequestParam MultipartFile file,Model model) throws Exception {
 
         System.out.println(name+"    "+price+"    "+category);
 
@@ -87,6 +93,7 @@ public class ControllerPost {
         if (file.isEmpty())
 
             return "index";
+
 
             storageService.store(file);
 

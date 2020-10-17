@@ -1,5 +1,6 @@
 package com.exampleTruLaLa.TruLaLa;
 
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -8,9 +9,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,8 +26,7 @@ public class FileSystemStorageService implements StorageService {
 
     @Autowired
     public FileSystemStorageService() {
-WebConfigurer wc=new
-        WebConfigurer();
+WebConfigurer wc=new WebConfigurer();
 
         String str=wc.getUploadDirectory2();
 
@@ -35,7 +35,15 @@ WebConfigurer wc=new
     }
 
     @Override
-    public void store(MultipartFile file) {
+    public void store(MultipartFile file) throws Exception {
+
+        BufferedImage img=convertToImage(file);
+
+        img=simpleResizeImage(img, 300);// !!!!!! image size here
+
+
+
+
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
@@ -47,10 +55,16 @@ WebConfigurer wc=new
                         "Cannot store file with relative path outside current directory "
                                 + filename);
             }
-            try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, this.rootLocation.resolve(filename),
-                        StandardCopyOption.REPLACE_EXISTING);
-            }
+
+            File outputfile = new File(this.rootLocation+"/"+ filename);
+            ImageIO.write(img, "jpg", outputfile);
+
+
+//            try (InputStream inputStream =file.getInputStream()) {
+//                Files.copy(inputStream, this.rootLocation.resolve(filename),
+//                        StandardCopyOption.REPLACE_EXISTING);
+//            }
+
         }
         catch (IOException e) {
             throw new RuntimeException("Failed to store file " + filename, e);
@@ -108,4 +122,14 @@ WebConfigurer wc=new
             throw new RuntimeException("Could not initialize storage", e);
         }
     }
+
+    private static BufferedImage convertToImage(MultipartFile file) throws IOException {
+        InputStream in = new ByteArrayInputStream(file.getBytes());
+        return ImageIO.read(in);
+    }
+
+   static BufferedImage simpleResizeImage(BufferedImage originalImage, int targetWidth) throws Exception {
+        return Scalr.resize(originalImage, targetWidth);
+    }
+
 }

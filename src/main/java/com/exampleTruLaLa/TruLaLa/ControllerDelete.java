@@ -72,7 +72,11 @@ public class ControllerDelete {
         System.out.println( product.toString() + file.getOriginalFilename());
 
 
-        storageService.store(file);
+        try {
+            storageService.store(file);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         model.addAttribute("electro", repositoryGoods.findAll());
