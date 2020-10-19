@@ -57,7 +57,7 @@ WebConfigurer wc=new WebConfigurer();
             }
 
             File outputfile = new File(this.rootLocation+"/"+ filename);
-            ImageIO.write(img, "jpg", outputfile);
+            ImageIO.write(img, "jpeg", outputfile);
 
 
 //            try (InputStream inputStream =file.getInputStream()) {
