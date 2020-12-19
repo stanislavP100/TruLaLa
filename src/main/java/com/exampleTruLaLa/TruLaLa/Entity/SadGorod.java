@@ -1,14 +1,10 @@
-package com.exampleTruLaLa.TruLaLa;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package com.exampleTruLaLa.TruLaLa.Entity;
 
 import javax.persistence.*;
-import java.awt.*;
-import java.util.Optional;
 
 @Entity
-@Table(name="goods", catalog = "truladb")
-public class Goods {
+@Table(name="sadgorod", catalog = "truladb")
+public class SadGorod {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +21,18 @@ public class Goods {
     private  String imagePath;
 
 
-    public Goods() {}
+    public SadGorod(String name, Float price, String imagePath, String category) {
+        this.name = name;
+        this.price = price;
+        this.imagePath = imagePath;
+
+    }
+
+    public static String getClassName(){
+        return "SadGorod";
+    }
+
+    public SadGorod() {}
 
     public String getImagePath() {
         return imagePath;
@@ -35,7 +42,7 @@ public class Goods {
         this.imagePath = imagePath;
     }
 
-    public Goods(Long id, String name, Float price, String imagePath) {
+    public SadGorod(Long id, String name, Float price, String imagePath) {
         this.id=id;
         this.name=name;
         this.price=price;
@@ -43,7 +50,7 @@ public class Goods {
 
     }
 
-    public Goods(Goods good)
+    public SadGorod(SadGorod good)
     {
         this.id=good.id;
         this.name=good.name;
@@ -73,7 +80,7 @@ public class Goods {
 
     @Override
     public String toString() {
-        return "Goods{" +
+        return "SadGorod{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

@@ -39,7 +39,7 @@ WebConfigurer wc=new WebConfigurer();
 
         BufferedImage img=convertToImage(file);
 
-        img=simpleResizeImage(img, 300);// !!!!!! image size here
+        img=simpleResizeImage(img, 70);// !!!!!! image size here
 
 
 

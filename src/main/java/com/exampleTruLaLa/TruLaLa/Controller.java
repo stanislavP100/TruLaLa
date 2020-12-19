@@ -1,14 +1,12 @@
 package com.exampleTruLaLa.TruLaLa;
 
+import com.exampleTruLaLa.TruLaLa.Entity.Goods;
+import com.exampleTruLaLa.TruLaLa.Repository.RepositoryGoods;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,9 +15,6 @@ public class Controller {
 
 @Autowired
     private RepositoryGoods repositoryGoods;
-@Autowired
-    private RepositoryElektroTools repositoryElektroTools;
-
 
     @GetMapping ("/")
   public   String cont(Map<String,Object>map )
@@ -56,28 +51,28 @@ public class Controller {
 
         }
 
-
-        for (int i=1;i<=repositoryElektroTools.count()+stepForElectroTools;i++)
-        {
-            Long l=new Long(i);
-
-            if(repositoryElektroTools.existsById(l)) {
-
-                Optional<ElectroTools> goods = repositoryElektroTools.findById(l);
-
-                JSONObject sampleObject = new JSONObject();
-
-                sampleObject.put("name", goods.get().getName());
-                sampleObject.put("price", goods.get().getPrice());
-                sampleObject.put("id", goods.get().getId());
-                sampleObject.put("image", goods.get().getImagePath());
-
-                electroToolsArr.put(sampleObject);
-            }
-            else
-                stepForElectroTools++;
-
-        }
+//
+//        for (int i=1;i<=repositoryElektroTools.count()+stepForElectroTools;i++)
+//        {
+//            Long l=new Long(i);
+//
+//            if(repositoryElektroTools.existsById(l)) {
+//
+//                Optional<ElectroTools> goods = repositoryElektroTools.findById(l);
+//
+//                JSONObject sampleObject = new JSONObject();
+//
+//                sampleObject.put("name", goods.get().getName());
+//                sampleObject.put("price", goods.get().getPrice());
+//                sampleObject.put("id", goods.get().getId());
+//                sampleObject.put("image", goods.get().getImagePath());
+//
+//                electroToolsArr.put(sampleObject);
+//            }
+//            else
+//                stepForElectroTools++;
+//
+//        }
 
         System.out.println(sampleArr.toString());
 

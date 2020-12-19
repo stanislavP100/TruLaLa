@@ -1,6 +1,7 @@
 package com.exampleTruLaLa.TruLaLa;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.exampleTruLaLa.TruLaLa.Entity.Goods;
+import com.exampleTruLaLa.TruLaLa.Repository.RepositoryGoods;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

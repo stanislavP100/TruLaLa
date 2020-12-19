@@ -1,13 +1,11 @@
-package com.exampleTruLaLa.TruLaLa;
+package com.exampleTruLaLa.TruLaLa.Entity;
 
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "electroTools", catalog = "truladb")
-
-public class ElectroTools {
-
+@Table(name="instrument", catalog = "truladb")
+public class Instrumenty {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -22,8 +20,19 @@ public class ElectroTools {
     @Column(name="imagePath")
     private  String imagePath;
 
-    public ElectroTools() {
+
+    public Instrumenty(String name, Float price, String imagePath, String category) {
+        this.name = name;
+        this.price = price;
+        this.imagePath = imagePath;
+
     }
+
+    public static String getClassName(){
+        return "Instrumenty";
+    }
+
+    public Instrumenty() {}
 
     public String getImagePath() {
         return imagePath;
@@ -33,8 +42,7 @@ public class ElectroTools {
         this.imagePath = imagePath;
     }
 
-    public ElectroTools (Long id, String name, Float price, String imagePath){
-
+    public Instrumenty(Long id, String name, Float price, String imagePath) {
         this.id=id;
         this.name=name;
         this.price=price;
@@ -42,36 +50,41 @@ public class ElectroTools {
 
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(Float price) {
-        this.price = price;
+    public Instrumenty(Instrumenty good)
+    {
+        this.id=good.id;
+        this.name=good.name;
+        this.price=good.price;
     }
 
     public Long getId() {
         return id;
     }
 
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Float getPrice() {
         return price;
     }
 
+    public void setPrice(Float price) {
+        this.price =  price;
+    }
+
     @Override
     public String toString() {
-        return "ElectroTools{" +
+        return "Instrumenty {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
     }
+
 }
